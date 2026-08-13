@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김도윤 | 반도체 공정기술 엔지니어 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --void:#0A0E1A;
+    --panel:#111A2E;
+    --panel-2:#0D1526;
+    --line: rgba(238,241,246,0.10);
+    --line-soft: rgba(238,241,246,0.06);
+    --amber:#FFB627;
+    --amber-soft: rgba(255,182,39,0.16);
+    --cyan:#5FD4E3;
+    --violet:#9B8CFF;
+    --ink:#EEF1F6;
+    --ink-dim:#9AA3B8;
+    --ink-faint:#5C6478;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+    --sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --maxw: 1140px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(238,241,246,0.025) 0px, transparent 1px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(238,241,246,0.025) 0px, transparent 1px, transparent 64px);
+    pointer-events:none;
+    z-index:0;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  section{position:relative; z-index:1;}
+
+  ::selection{background:var(--amber); color:var(--void);}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:18px; height:1px; background:var(--amber);}
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,26,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px;
+  }
+  .logo{
+    font-family:var(--mono); font-weight:600; font-size:14px;
+    letter-spacing:0.06em; color:var(--ink);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 8px var(--amber);}
+  .nav-links{display:flex; gap:28px; flex-wrap:wrap;}
+  .nav-links a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.05em;
+    color:var(--ink-dim); text-transform:uppercase;
+    padding:4px 0; border-bottom:1px solid transparent;
+    transition:color .2s, border-color .2s;
+  }
+  .nav-links a:hover{color:var(--amber); border-color:var(--amber);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:96px 0 80px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+    max-width:var(--maxw); margin:0 auto; padding-left:32px; padding-right:32px;
+  }
+  .hero h1{
+    font-size:clamp(38px,5.4vw,64px);
+    font-weight:800; letter-spacing:-0.02em; line-height:1.08;
+    margin:18px 0 6px;
+  }
+  .hero .role{
+    font-family:var(--mono); font-size:16px; color:var(--cyan);
+    letter-spacing:0.03em; margin-bottom:22px;
+  }
+  .hero p.pitch{
+    color:var(--ink-dim); font-size:16.5px; max-width:480px; margin-bottom:34px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.03em;
+    padding:13px 22px; border-radius:2px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .18s, box-shadow .18s, background .18s;
+  }
+  .btn-primary{background:var(--amber); color:var(--void); font-weight:700;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(255,182,39,0.28);}
+  .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-2px);}
+
+  .stat-row{display:flex; gap:32px; margin-top:44px; flex-wrap:wrap;}
+  .stat-row .stat b{
+    display:block; font-family:var(--mono); font-size:24px; color:var(--ink);
+  }
+  .stat-row .stat span{font-size:12.5px; color:var(--ink-faint);}
+
+  .wafer-box{position:relative; display:flex; align-items:center; justify-content:center;}
+  .wafer-glow{
+    position:absolute; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, var(--amber-soft), transparent 70%);
+    filter:blur(6px);
+  }
+  .wafer-spin{animation:spin 60s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ===== SECTION HEADS ===== */
+  .sec-head{margin-bottom:48px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,36px); font-weight:800; letter-spacing:-0.01em; margin-top:10px;}
+  .sec-head p{color:var(--ink-dim); margin-top:10px; max-width:560px;}
+  section.pad{padding:100px 0;}
+  .divider{border:none; border-top:1px solid var(--line-soft);}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .about-grid p{color:var(--ink-dim); margin-bottom:16px; font-size:15.5px;}
+  .about-grid p b{color:var(--ink); font-weight:600;}
+  .fact-list{border-top:1px solid var(--line-soft);}
+  .fact-list li{
+    display:flex; justify-content:space-between; padding:14px 0;
+    border-bottom:1px solid var(--line-soft); font-size:14.5px;
+  }
+  .fact-list li span:first-child{font-family:var(--mono); color:var(--ink-faint); font-size:12.5px; text-transform:uppercase; letter-spacing:.06em;}
+
+  /* ===== PROCESS FLOW ===== */
+  .flow{position:relative;}
+  .flow::before{
+    content:""; position:absolute; left:23px; top:8px; bottom:8px; width:1px;
+    background:linear-gradient(var(--amber), var(--cyan), transparent);
+    opacity:.5;
+  }
+  .flow-item{
+    display:grid; grid-template-columns:48px 1fr; gap:20px;
+    padding:22px 0; border-bottom:1px solid var(--line-soft);
+  }
+  .flow-item:first-child{padding-top:0;}
+  .flow-num{
+    font-family:var(--mono); font-size:13px; color:var(--void); font-weight:700;
+    width:48px; height:48px; border-radius:50%; background:var(--amber);
+    display:flex; align-items:center; justify-content:center; z-index:1;
+    box-shadow:0 0 0 6px var(--void);
+  }
+  .flow-item:nth-child(even) .flow-num{background:var(--cyan);}
+  .flow-body h3{font-size:17px; font-weight:700; margin-bottom:4px;}
+  .flow-body .kw{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
+  .flow-body p{color:var(--ink-dim); font-size:14.5px; margin:8px 0 10px; max-width:640px;}
+  .bar{height:4px; background:var(--line); border-radius:2px; max-width:220px; overflow:hidden;}
+  .bar i{display:block; height:100%; background:linear-gradient(90deg,var(--amber),var(--cyan));}
+
+  /* ===== PROJECTS ===== */
+  .proj-card{
+    background:var(--panel); border:1px solid var(--line-soft); border-radius:4px;
+    padding:32px; margin-bottom:24px;
+  }
+  .proj-top{
+    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;
+    border-bottom:1px dashed var(--line); padding-bottom:18px; margin-bottom:20px;
+  }
+  .proj-top .lotid{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); letter-spacing:.05em;}
+  .proj-top h3{font-size:20px; font-weight:700; margin-top:6px;}
+  .proj-tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--cyan);
+    border:1px solid rgba(95,212,227,0.3); padding:4px 9px; border-radius:2px;
+  }
+  .proj-body{display:grid; grid-template-columns:1.3fr 1fr; gap:28px;}
+  .proj-body .desc p{color:var(--ink-dim); font-size:14.5px; margin-bottom:12px;}
+  .proj-body .desc strong{color:var(--ink);}
+  .metric-box{
+    background:var(--panel-2); border:1px solid var(--line-soft); border-radius:3px; padding:20px;
+  }
+  .metric-box .label{font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em;}
+  .metric-box .num{font-family:var(--mono); font-size:26px; color:var(--amber); font-weight:700; margin:8px 0 4px;}
+  .metric-box .sub{font-size:12.5px; color:var(--ink-dim);}
+  .metric-box + .metric-box{margin-top:14px;}
+
+  /* ===== SKILLS TOOLS ===== */
+  .tool-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+  .tool-card{
+    border:1px solid var(--line-soft); border-radius:4px; padding:22px;
+    background:var(--panel);
+  }
+  .tool-card h4{font-size:14.5px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
+  .tool-card h4 .sq{width:8px; height:8px; background:var(--amber);}
+  .tool-card p{font-size:13px; color:var(--ink-dim);}
+
+  /* ===== EDUCATION ===== */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .edu-item{padding:18px 0; border-bottom:1px solid var(--line-soft);}
+  .edu-item .when{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
+  .edu-item h4{font-size:15.5px; font-weight:700; margin:6px 0 4px;}
+  .edu-item p{font-size:13.5px; color:var(--ink-dim);}
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer{
+    padding:90px 0 40px; border-top:1px solid var(--line-soft);
+    background:linear-gradient(180deg, rgba(255,182,39,0.05), transparent 40%);
+  }
+  .contact-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:40px; margin-bottom:60px;}
+  .contact-grid h2{font-size:clamp(28px,4vw,42px); font-weight:800; line-height:1.2; margin-bottom:18px;}
+  .contact-grid p{color:var(--ink-dim); max-width:440px;}
+  .contact-list li{
+    display:flex; justify-content:space-between; padding:16px 0; border-bottom:1px solid var(--line-soft);
+    font-family:var(--mono); font-size:13.5px;
+  }
+  .contact-list li span:first-child{color:var(--ink-faint); text-transform:uppercase; font-size:11px; letter-spacing:.06em;}
+  .contact-list li a:hover{color:var(--amber);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);
+    padding-top:24px; border-top:1px solid var(--line-soft);
+  }
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .wafer-spin{animation:none;}
+    .reveal{transition:none; opacity:1; transform:none;}
+  }
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; padding-top:64px;}
+    .wafer-box{order:-1; margin-bottom:12px;}
+    .about-grid, .edu-grid, .proj-body, .contact-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    section.pad{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="dot"></span>D.YOON · PROCESS ENG.</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">SEMICONDUCTOR PROCESS ENGINEER PORTFOLIO</div>
+    <h1>김도윤<br>공정으로 수율을<br>증명합니다.</h1>
+    <div class="role">Process Technology Engineer Candidate</div>
+    <p class="pitch">
+      8대 공정에 대한 이해와 클린룸 실습 경험을 바탕으로, 문제를 정의하고 실험으로 검증하며
+      결과를 숫자로 증명하는 공정기술 엔지니어를 목표로 합니다.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">프로젝트 보기 →</a>
+      <a class="btn btn-ghost" href="mailto:your.email@example.com">이력서 요청하기</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>8</b><span>대 공정 실습 이수</span></div>
+      <div class="stat"><b>3</b><span>건 공정 개선 프로젝트</span></div>
+      <div class="stat"><b>240h+</b><span>클린룸·계측 실습</span></div>
+    </div>
+  </div>
+
+  <div class="wafer-box">
+    <div class="wafer-glow"></div>
+    <svg viewBox="0 0 520 520" width="380" height="380" class="wafer-spin" aria-hidden="true">
+      <defs>
+        <radialGradient id="waferGrad" cx="35%" cy="28%" r="80%">
+          <stop offset="0%" stop-color="#CDEFFA"/>
+          <stop offset="45%" stop-color="#5FD4E3"/>
+          <stop offset="100%" stop-color="#152A46"/>
+        </radialGradient>
+        <clipPath id="waferClip">
+          <path d="M184,445 A200,200 0 1 1 336,445 L184,445 Z"/>
+        </clipPath>
+      </defs>
+      <path d="M184,445 A200,200 0 1 1 336,445 L184,445 Z" fill="url(#waferGrad)" stroke="rgba(238,241,246,0.35)" stroke-width="1.5"/>
+      <g clip-path="url(#waferClip)" opacity="0.55">
+        <g stroke="rgba(10,14,26,0.35)" stroke-width="1">
+          <line x1="60" y1="140" x2="460" y2="140"/>
+          <line x1="60" y1="192" x2="460" y2="192"/>
+          <line x1="60" y1="244" x2="460" y2="244"/>
+          <line x1="60" y1="296" x2="460" y2="296"/>
+          <line x1="60" y1="348" x2="460" y2="348"/>
+          <line x1="60" y1="400" x2="460" y2="400"/>
+          <line x1="140" y1="60" x2="140" y2="460"/>
+          <line x1="192" y1="60" x2="192" y2="460"/>
+          <line x1="244" y1="60" x2="244" y2="460"/>
+          <line x1="296" y1="60" x2="296" y2="460"/>
+          <line x1="348" y1="60" x2="348" y2="460"/>
+          <line x1="400" y1="60" x2="400" y2="460"/>
+        </g>
+      </g>
+      <circle cx="260" cy="260" r="200" fill="none" stroke="rgba(238,241,246,0.25)" stroke-width="1"/>
+      <circle cx="260" cy="260" r="140" fill="none" stroke="rgba(238,241,246,0.15)" stroke-width="1"/>
+      <circle cx="260" cy="260" r="80" fill="none" stroke="rgba(238,241,246,0.12)" stroke-width="1"/>
+    </svg>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== ABOUT ===== -->
+<section class="pad" id="about">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <div class="eyebrow">ABOUT</div>
+      <h2>수 나노미터의 차이가<br>수율 전체를 좌우한다고 믿습니다.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>반도체공학을 전공하며 <b>눈에 보이지 않는 박막 두께와 임계치수(CD)의 미세한 편차가 소자 전체의 성능과 수율을 결정한다</b>는 사실에 매료되어 공정기술 엔지니어를 목표로 하게 되었습니다.</p>
+        <p>클린룸 실습과 공정 데이터 분석 프로젝트를 진행하며, <b>문제를 정의하고 → 실험으로 원인을 검증하고 → 결과를 수치로 증명</b>하는 과정에서 강점을 발휘해왔습니다. 특히 DOE(실험계획법)와 SPC(통계적공정관리)를 활용해 공정 변수와 결과 지표 사이의 인과관계를 데이터로 설명하는 것을 좋아합니다.</p>
+        <p>현장에서는 <b>사소한 이상 신호도 놓치지 않는 꼼꼼함</b>과, 장비·공정·계측 담당자와 원활히 소통하는 협업 능력을 바탕으로 공정 안정화에 기여하는 엔지니어가 되고자 합니다.</p>
+      </div>
+      <ul class="fact-list">
+        <li><span>Target Role</span><span>반도체 공정기술 (Process Engineer)</span></li>
+        <li><span>Focus</span><span>박막증착 · 식각 · 포토 공정</span></li>
+        <li><span>Major</span><span>OO대학교 신소재/반도체공학과</span></li>
+        <li><span>Tools</span><span>Minitab · JMP · Python · MATLAB</span></li>
+        <li><span>Strength</span><span>데이터 기반 문제해결, DOE/SPC</span></li>
+        <li><span>Location</span><span>서울/경기 근무 가능</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== PROCESS FLOW / 8대 공정 ===== -->
+<section class="pad" id="process">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <div class="eyebrow">CORE PROCESS STACK</div>
+      <h2>반도체 8대 공정 이해도</h2>
+      <p>실제 웨이퍼가 소자로 완성되기까지의 공정 순서를 기준으로, 각 단계의 원리와 실습 경험을 정리했습니다.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-num">01</div>
+        <div class="flow-body">
+          <h3>산화 (Oxidation)</h3>
+          <div class="kw">Furnace · Thermal Oxidation · Wet/Dry Ox</div>
+          <p>웨이퍼 표면에 SiO₂ 절연막을 형성하는 공정. Furnace 실습을 통해 온도·시간에 따른 산화막 두께 변화를 Ellipsometer로 측정·검증했습니다.</p>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">02</div>
+        <div class="flow-body">
+          <h3>포토 (Photolithography)</h3>
+          <div class="kw">Coater/Developer · Stepper · Overlay · CD-SEM</div>
+          <p>감광액 도포 후 노광·현상으로 회로 패턴을 전사하는 공정. 노광 조건과 오버레이 정합도의 상관관계를 분석한 프로젝트를 진행했습니다.</p>
+          <div class="bar"><i style="width:70%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">03</div>
+        <div class="flow-body">
+          <h3>식각 (Etching)</h3>
+          <div class="kw">Dry/Wet Etch · Plasma · Selectivity</div>
+          <p>불필요한 부분을 선택적으로 제거해 패턴을 완성하는 공정. 식각 가스 유량·RF Power와 식각 프로파일 간의 관계를 학습했습니다.</p>
+          <div class="bar"><i style="width:65%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">04</div>
+        <div class="flow-body">
+          <h3>박막증착 (Thin Film Deposition)</h3>
+          <div class="kw">CVD · LPCVD · PVD · Sputtering</div>
+          <p>웨이퍼 위에 절연막·도전막을 쌓는 공정. LPCVD 공정 변수 최적화를 통한 박막 두께 균일도 개선 프로젝트를 주도했습니다.</p>
+          <div class="bar"><i style="width:85%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">05</div>
+        <div class="flow-body">
+          <h3>이온주입 (Ion Implantation)</h3>
+          <div class="kw">Dopant · Dose · Energy · Annealing</div>
+          <p>불순물을 주입해 반도체의 전기적 특성을 부여하는 공정. Dose/Energy 조건에 따른 접합 특성 변화를 이론적으로 학습했습니다.</p>
+          <div class="bar"><i style="width:55%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">06</div>
+        <div class="flow-body">
+          <h3>금속배선 (Metallization)</h3>
+          <div class="kw">Cu/Al Interconnect · CMP · Barrier Layer</div>
+          <p>소자 간 전기적 연결을 형성하는 배선 공정. CMP 평탄화 공정의 원리와 Dishing/Erosion 이슈에 대해 학습했습니다.</p>
+          <div class="bar"><i style="width:50%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">07</div>
+        <div class="flow-body">
+          <h3>EDS (전기적 특성 검사)</h3>
+          <div class="kw">Wafer Sort · Parametric Test · Yield Map</div>
+          <p>완성된 웨이퍼의 전기적 특성을 검사해 양품을 선별하는 공정. Python으로 웨이퍼 맵 기반 불량 패턴을 시각화한 경험이 있습니다.</p>
+          <div class="bar"><i style="width:60%"></i></div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">08</div>
+        <div class="flow-body">
+          <h3>패키징 & 테스트 (Package & Test)</h3>
+          <div class="kw">Wire Bonding · Molding · Final Test</div>
+          <p>칩을 외부 충격으로부터 보호하고 최종 성능을 검증하는 공정. 전체 공정 흐름 속에서의 역할과 품질 연계성을 이해하고 있습니다.</p>
+          <div class="bar"><i style="width:45%"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== PROJECTS ===== -->
+<section class="pad" id="projects">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <div class="eyebrow">PROJECTS</div>
+      <h2>공정 개선 프로젝트</h2>
+      <p>문제 정의 → 실험 설계(DOE) → 데이터 검증 → 개선 순으로 진행한 대표 프로젝트입니다.</p>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div>
+          <div class="lotid">LOT ID · DOE-2024-003 · 학부 캡스톤 프로젝트</div>
+          <h3>LPCVD 박막 두께 균일도 개선</h3>
+        </div>
+        <div class="proj-tags">
+          <span class="tag">LPCVD</span><span class="tag">DOE</span><span class="tag">Minitab</span>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="desc">
+          <p><strong>배경 ·</strong> 실습용 LPCVD 공정에서 웨이퍼 중심부와 가장자리 간 박막 두께 편차가 커 균일도 개선이 필요했습니다.</p>
+          <p><strong>진행 ·</strong> 온도, 압력, 가스 유량 3개 변수에 대해 완전요인설계(Full Factorial DOE)를 수립하고, Ellipsometer로 9-point 두께를 측정해 Minitab으로 분산분석(ANOVA)을 수행했습니다.</p>
+          <p><strong>결과 ·</strong> 압력과 가스 유량비가 균일도에 유의미한 영향을 미침을 확인하고 최적 조건을 도출, 두께 편차(σ)를 개선했습니다.</p>
+        </div>
+        <div>
+          <div class="metric-box">
+            <div class="label">두께 균일도 (1σ)</div>
+            <div class="num">1.8% → 0.9%</div>
+            <div class="sub">최적 조건 적용 후 절반 수준으로 개선</div>
+          </div>
+          <div class="metric-box">
+            <div class="label">사용 장비 / Tool</div>
+            <div class="num" style="font-size:15px;">Furnace · Ellipsometer</div>
+            <div class="sub">Minitab DOE / ANOVA 분석</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div>
+          <div class="lotid">LOT ID · PH-2024-011 · 반도체 공정 실습 프로그램</div>
+          <h3>포토 공정 오버레이 정합도 분석</h3>
+        </div>
+        <div class="proj-tags">
+          <span class="tag">Photo</span><span class="tag">CD-SEM</span><span class="tag">Overlay</span>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="desc">
+          <p><strong>배경 ·</strong> 노광 공정 반복 실습에서 층간 정합도(Overlay) 오차가 스펙 마진에 근접해 원인 분석이 필요했습니다.</p>
+          <p><strong>진행 ·</strong> 노광 초점(Focus)·노광량(Dose) 조건을 변경해 가며 CD-SEM으로 오버레이 오차를 측정하고, 공정 조건별 산점도를 통해 상관관계를 분석했습니다.</p>
+          <p><strong>결과 ·</strong> 최적 Focus/Dose 조건 조합을 제시해 오버레이 오차를 스펙 마진 내로 안정화했습니다.</p>
+        </div>
+        <div>
+          <div class="metric-box">
+            <div class="label">오버레이 오차</div>
+            <div class="num">-38%</div>
+            <div class="sub">최적 조건 적용 후 오차 감소율</div>
+          </div>
+          <div class="metric-box">
+            <div class="label">사용 장비 / Tool</div>
+            <div class="num" style="font-size:15px;">Stepper · CD-SEM</div>
+            <div class="sub">Excel / JMP 데이터 분석</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div>
+          <div class="lotid">LOT ID · SPC-2025-002 · 개인 프로젝트</div>
+          <h3>SPC 기반 공정 이상 탐지 시스템 구축</h3>
+        </div>
+        <div class="proj-tags">
+          <span class="tag">Python</span><span class="tag">SPC</span><span class="tag">Pandas</span>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="desc">
+          <p><strong>배경 ·</strong> 다수의 공정 데이터를 수작업으로 모니터링하는 방식은 이상 발생 시점을 놓치기 쉽다는 문제를 인식했습니다.</p>
+          <p><strong>진행 ·</strong> Python(Pandas, Matplotlib)으로 관리도(X-bar, R Chart)를 자동 생성하고, 3σ 이탈 및 런 룰(Run Rule) 기반 이상 탐지 로직을 구현했습니다.</p>
+          <p><strong>결과 ·</strong> 시뮬레이션 데이터 기준 이상 신호를 조기에 탐지, 수작업 대비 확인 소요 시간을 단축했습니다.</p>
+        </div>
+        <div>
+          <div class="metric-box">
+            <div class="label">이상 탐지 소요 시간</div>
+            <div class="num">-60%</div>
+            <div class="sub">수작업 모니터링 대비 단축</div>
+          </div>
+          <div class="metric-box">
+            <div class="label">사용 Tool</div>
+            <div class="num" style="font-size:15px;">Python · Pandas</div>
+            <div class="sub">Matplotlib 관리도 시각화</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== SKILLS / TOOLS ===== -->
+<section class="pad">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <div class="eyebrow">SKILLS & TOOLS</div>
+      <h2>분석 · 실습 역량</h2>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-card"><h4><span class="sq"></span>데이터 분석</h4><p>Minitab, JMP를 활용한 DOE·ANOVA·회귀분석 및 SPC 관리도 작성</p></div>
+      <div class="tool-card"><h4><span class="sq"></span>프로그래밍</h4><p>Python(Pandas, Matplotlib), MATLAB 기반 공정 데이터 처리 및 시각화</p></div>
+      <div class="tool-card"><h4><span class="sq"></span>계측 장비</h4><p>Ellipsometer, CD-SEM, 4-Point Probe를 활용한 박막·패턴 계측 실습</p></div>
+      <div class="tool-card"><h4><span class="sq"></span>클린룸 실습</h4><p>Furnace, Stepper, Etcher 등 8대 공정 주요 장비 조작 및 안전수칙 이수</p></div>
+      <div class="tool-card"><h4><span class="sq"></span>품질/신뢰성</h4><p>6시그마 방법론 기반 문제 정의 및 근본 원인 분석(RCA) 경험</p></div>
+      <div class="tool-card"><h4><span class="sq"></span>협업 & 문서화</h4><p>실험 결과 보고서 작성, 발표 및 팀 단위 프로젝트 협업 경험</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== EDUCATION ===== -->
+<section class="pad" id="education">
+  <div class="wrap reveal">
+    <div class="sec-head">
+      <div class="eyebrow">EDUCATION & CERTIFICATION</div>
+      <h2>학력 및 자격사항</h2>
+    </div>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-item">
+          <div class="when">2021.03 — 2027.02 (예정)</div>
+          <h4>OO대학교 신소재공학과 (반도체공학 트랙)</h4>
+          <p>학점 4.1 / 4.5 · 반도체공정, 박막공학, 반도체소자 전공 이수</p>
+        </div>
+        <div class="edu-item">
+          <div class="when">2025.07 — 2025.08</div>
+          <h4>반도체 클린룸 공정 실습과정</h4>
+          <p>OO기관 · 8대 공정 실습 및 계측 장비 운용 교육 이수</p>
+        </div>
+      </div>
+      <div>
+        <div class="edu-item">
+          <div class="when">2025.05</div>
+          <h4>반도체설계기사</h4>
+          <p>한국산업인력공단</p>
+        </div>
+        <div class="edu-item">
+          <div class="when">2024.11</div>
+          <h4>품질경영기사 / 6시그마 그린벨트(GB)</h4>
+          <p>통계적 품질관리 및 문제해결 방법론 이수</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<footer id="contact">
+  <div class="wrap reveal">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow">CONTACT</div>
+        <h2>함께 공정을<br>개선해나가고 싶습니다.</h2>
+        <p>반도체 공정기술 직무로 지원 중입니다. 편하게 연락 주시면 빠르게 회신드리겠습니다.</p>
+      </div>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:your.email@example.com">your.email@example.com</a></li>
+        <li><span>Phone</span><a href="tel:010-0000-0000">010-0000-0000</a></li>
+        <li><span>GitHub</span><a href="https://github.com/yourid" target="_blank" rel="noopener">github.com/yourid</a></li>
+        <li><span>LinkedIn</span><a href="https://linkedin.com/in/yourid" target="_blank" rel="noopener">linkedin.com/in/yourid</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 KIM DOYOON. PROCESS TECHNOLOGY ENGINEER PORTFOLIO.</span>
+      <span>Ø300MM · SI WAFER · BUILT WITH CARE</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
